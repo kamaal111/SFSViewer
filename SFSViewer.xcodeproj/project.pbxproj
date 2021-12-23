@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2FBDB12774DA52005D7AB9 /* names.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C2FBDAF2774DA52005D7AB9 /* names.json */; };
+		2C2FBDB22774DA52005D7AB9 /* names.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C2FBDAF2774DA52005D7AB9 /* names.json */; };
+		2C2FBDB32774DA52005D7AB9 /* supported_versions.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C2FBDB02774DA52005D7AB9 /* supported_versions.json */; };
+		2C2FBDB42774DA52005D7AB9 /* supported_versions.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C2FBDB02774DA52005D7AB9 /* supported_versions.json */; };
 		2CBE6DE72773957A004229DF /* SFSViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE6DD427739570004229DF /* SFSViewer.xcdatamodeld */; };
 		2CBE6DE82773957A004229DF /* SFSViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE6DD427739570004229DF /* SFSViewer.xcdatamodeld */; };
 		2CBE6DE92773957A004229DF /* SFSViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE6DD627739570004229DF /* SFSViewerApp.swift */; };
@@ -21,6 +25,8 @@
 
 /* Begin PBXFileReference section */
 		2C2FBDAE27748CE3005D7AB9 /* run.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = run.sh; sourceTree = "<group>"; };
+		2C2FBDAF2774DA52005D7AB9 /* names.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = names.json; sourceTree = "<group>"; };
+		2C2FBDB02774DA52005D7AB9 /* supported_versions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = supported_versions.json; sourceTree = "<group>"; };
 		2CBE6DD527739570004229DF /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		2CBE6DD627739570004229DF /* SFSViewerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSViewerApp.swift; sourceTree = "<group>"; };
 		2CBE6DD727739570004229DF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,8 +108,8 @@
 		2CBE6DFA2774895C004229DF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2CBE6DFF27748A1A004229DF /* Names */,
 				2CBE6DFB27748968004229DF /* Assets */,
+				2CBE6DFF27748A1A004229DF /* Names */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -143,6 +149,8 @@
 		2CBE6DFF27748A1A004229DF /* Names */ = {
 			isa = PBXGroup;
 			children = (
+				2C2FBDAF2774DA52005D7AB9 /* names.json */,
+				2C2FBDB02774DA52005D7AB9 /* supported_versions.json */,
 			);
 			path = Names;
 			sourceTree = "<group>";
@@ -165,6 +173,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2CBE6DF32773957A004229DF /* Build configuration list for PBXNativeTarget "SFSViewer (iOS)" */;
 			buildPhases = (
+				2C2FBDB52774DA79005D7AB9 /* Reformat Names */,
 				2CBE6DDA2773957A004229DF /* Sources */,
 				2CBE6DDB2773957A004229DF /* Frameworks */,
 				2CBE6DDC2773957A004229DF /* Resources */,
@@ -182,6 +191,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2CBE6DF62773957A004229DF /* Build configuration list for PBXNativeTarget "SFSViewer (macOS)" */;
 			buildPhases = (
+				2C2FBDB62774DAAC005D7AB9 /* Reformat Names */,
 				2CBE6DE02773957A004229DF /* Sources */,
 				2CBE6DE12773957A004229DF /* Frameworks */,
 				2CBE6DE22773957A004229DF /* Resources */,
@@ -237,6 +247,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C2FBDB32774DA52005D7AB9 /* supported_versions.json in Resources */,
+				2C2FBDB12774DA52005D7AB9 /* names.json in Resources */,
 				2CBE6DEF2773957A004229DF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,11 +257,52 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C2FBDB42774DA52005D7AB9 /* supported_versions.json in Resources */,
+				2C2FBDB22774DA52005D7AB9 /* names.json in Resources */,
 				2CBE6DF02773957A004229DF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2C2FBDB52774DA79005D7AB9 /* Reformat Names */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Reformat Names";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\nsh Scripts/reformat-names/run.sh\n";
+		};
+		2C2FBDB62774DAAC005D7AB9 /* Reformat Names */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Reformat Names";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\nsh $SRCROOT/Scripts/reformat-names/run.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2CBE6DDA2773957A004229DF /* Sources */ = {
