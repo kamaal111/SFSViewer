@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"encoding/json"
 	"encoding/xml"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -11,6 +12,8 @@ import (
 	"strings"
 	"time"
 )
+
+const SAVE_LOCATION = "../../Shared/Resources/Names"
 
 func main() {
 	start := time.Now()
@@ -42,9 +45,11 @@ func main() {
 	formattedNamesChannel := make(chan error)
 	go makeFormattedNames(plistDict, formattedNamesChannel)
 
-	// var supportedVersions map[string]SupportedVersions
+	supportedVersionsChannel := make(chan error)
+	go makeSupportedVersions(plistDict, supportedVersionsChannel)
 
-	for _, channel := range []chan error{formattedNamesChannel} {
+	channels := []chan error{formattedNamesChannel, supportedVersionsChannel}
+	for _, channel := range channels {
 		err = <-channel
 		if err != nil {
 			log.Fatalln(err)
@@ -55,9 +60,38 @@ func main() {
 	fmt.Printf("done reformatting names in %s\n", elapsed)
 }
 
+func makeSupportedVersions(plistDict PlistDict, channel chan error) {
+	yearToRelease := plistDict.GetDict("year_to_release")
+	if yearToRelease == nil {
+		channel <- errors.New("year to release not found in plist")
+		return
+	}
+
+	supportedVersions := make(map[string]SupportedVersions)
+	for yearIndex, year := range yearToRelease.Keys {
+		releases := yearToRelease.Dicts[yearIndex]
+		iOSRelease := releases.Strings[0]
+		supportedVersions[year] = SupportedVersions{IOS: iOSRelease}
+	}
+
+	supportedVersionsBytes, err := json.MarshalIndent(supportedVersions, "", "  ")
+	if err != nil {
+		channel <- err
+		return
+	}
+
+	err = ioutil.WriteFile(fmt.Sprintf("%s/supported_versions.json", SAVE_LOCATION), supportedVersionsBytes, 0644)
+	channel <- err
+}
+
 func makeFormattedNames(plistDict PlistDict, channel chan error) {
 	formattedNames := []FormattedName{}
 	symbols := plistDict.GetDict("symbols")
+	if symbols == nil {
+		channel <- errors.New("symbols not found in plist")
+		return
+	}
+
 	for symbolIndex, symbol := range symbols.Keys {
 		releaseYear := symbols.Strings[symbolIndex]
 		formattedName := FormattedName{
@@ -73,7 +107,7 @@ func makeFormattedNames(plistDict PlistDict, channel chan error) {
 		return
 	}
 
-	err = ioutil.WriteFile("../../Shared/Resources/Names/names.json", formattedNamesBytes, 0644)
+	err = ioutil.WriteFile(fmt.Sprintf("%s/names.json", SAVE_LOCATION), formattedNamesBytes, 0644)
 	channel <- err
 }
 
