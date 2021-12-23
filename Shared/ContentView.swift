@@ -11,6 +11,14 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             Text("Select an item")
+                .onAppear(perform: {
+                    do {
+                        let sfInfo = try SFInfo()
+                        print(sfInfo)
+                    } catch {
+                        print(error)
+                    }
+                })
         }
     }
 }
