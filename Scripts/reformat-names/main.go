@@ -75,8 +75,28 @@ func makeSupportedVersions(plistDict PlistDict, channel chan error) {
 			channel <- err
 			return
 		}
+		macOSRelease, err := releases.GetString("macOS")
+		if err != nil {
+			channel <- err
+			return
+		}
+		tvOSRelease, err := releases.GetString("tvOS")
+		if err != nil {
+			channel <- err
+			return
+		}
+		watchOSRelease, err := releases.GetString("watchOS")
+		if err != nil {
+			channel <- err
+			return
+		}
 
-		supportedVersions[year] = SupportedVersions{IOS: iOSRelease}
+		supportedVersions[year] = SupportedVersions{
+			IOS:     iOSRelease,
+			MacOS:   macOSRelease,
+			TVOS:    tvOSRelease,
+			WatchOS: watchOSRelease,
+		}
 	}
 
 	supportedVersionsBytes, err := json.MarshalIndent(supportedVersions, "", "  ")
@@ -122,7 +142,10 @@ type FormattedName struct {
 }
 
 type SupportedVersions struct {
-	IOS string `json:"iOS"`
+	IOS     string `json:"iOS"`
+	MacOS   string `json:"macOS"`
+	TVOS    string `json:"tvOS"`
+	WatchOS string `json:"watchOS"`
 }
 
 type PlistDict struct {
