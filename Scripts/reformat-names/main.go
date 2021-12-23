@@ -61,16 +61,21 @@ func main() {
 }
 
 func makeSupportedVersions(plistDict PlistDict, channel chan error) {
-	yearToRelease := plistDict.GetDict("year_to_release")
-	if yearToRelease == nil {
-		channel <- errors.New("year to release not found in plist")
+	yearToRelease, err := plistDict.GetDict("year_to_release")
+	if err != nil {
+		channel <- err
 		return
 	}
 
 	supportedVersions := make(map[string]SupportedVersions)
 	for yearIndex, year := range yearToRelease.Keys {
 		releases := yearToRelease.Dicts[yearIndex]
-		iOSRelease := releases.Strings[0]
+		iOSRelease, err := releases.GetString("iOS")
+		if err != nil {
+			channel <- err
+			return
+		}
+
 		supportedVersions[year] = SupportedVersions{IOS: iOSRelease}
 	}
 
@@ -86,9 +91,9 @@ func makeSupportedVersions(plistDict PlistDict, channel chan error) {
 
 func makeFormattedNames(plistDict PlistDict, channel chan error) {
 	formattedNames := []FormattedName{}
-	symbols := plistDict.GetDict("symbols")
-	if symbols == nil {
-		channel <- errors.New("symbols not found in plist")
+	symbols, err := plistDict.GetDict("symbols")
+	if err != nil {
+		channel <- err
 		return
 	}
 
@@ -127,11 +132,30 @@ type PlistDict struct {
 	Strings []string    `xml:"string"`
 }
 
-func (plistDict PlistDict) GetDict(key string) *PlistDict {
+func (plistDict PlistDict) GetDict(key string) (PlistDict, error) {
+	if len(plistDict.Keys) != len(plistDict.Dicts) {
+		return PlistDict{}, errors.New("dict items not formatted correctly")
+	}
+
 	for dictKeyIndex, dictKey := range plistDict.Keys {
 		if dictKey == key {
-			return &plistDict.Dicts[dictKeyIndex]
+			return plistDict.Dicts[dictKeyIndex], nil
 		}
 	}
-	return nil
+
+	return PlistDict{}, fmt.Errorf("%s key not found in plist", key)
+}
+
+func (plistDict PlistDict) GetString(key string) (string, error) {
+	if len(plistDict.Keys) != len(plistDict.Strings) {
+		return "", errors.New("string items not formatted correctly")
+	}
+
+	for dictKeyIndex, dictKey := range plistDict.Keys {
+		if dictKey == key {
+			return plistDict.Strings[dictKeyIndex], nil
+		}
+	}
+
+	return "", fmt.Errorf("%s key not found in plist", key)
 }
