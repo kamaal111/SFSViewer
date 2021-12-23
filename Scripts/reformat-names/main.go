@@ -39,6 +39,23 @@ func main() {
 		log.Fatalln(err)
 	}
 
+	formattedNamesChannel := make(chan error)
+	go makeFormattedNames(plistDict, formattedNamesChannel)
+
+	// var supportedVersions map[string]SupportedVersions
+
+	for _, channel := range []chan error{formattedNamesChannel} {
+		err = <-channel
+		if err != nil {
+			log.Fatalln(err)
+		}
+	}
+
+	elapsed := time.Since(start)
+	fmt.Printf("done reformatting names in %s\n", elapsed)
+}
+
+func makeFormattedNames(plistDict PlistDict, channel chan error) {
 	formattedNames := []FormattedName{}
 	symbols := plistDict.GetDict("symbols")
 	for symbolIndex, symbol := range symbols.Keys {
@@ -52,16 +69,12 @@ func main() {
 
 	formattedNamesBytes, err := json.MarshalIndent(formattedNames, "", "  ")
 	if err != nil {
-		log.Fatalln(err)
+		channel <- err
+		return
 	}
 
 	err = ioutil.WriteFile("../../Shared/Resources/Names/names.json", formattedNamesBytes, 0644)
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	elapsed := time.Since(start)
-	fmt.Printf("done reformatting names in %s\n", elapsed)
+	channel <- err
 }
 
 type FormattedName struct {
