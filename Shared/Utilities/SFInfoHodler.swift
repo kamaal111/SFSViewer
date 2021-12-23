@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(Cocoa)
+import Cocoa
+#endif
 
 public struct SFInfoHodler {
     public let items: [SFInfo]

@@ -13,6 +13,10 @@
 		2C2FBDB42774DA52005D7AB9 /* supported_versions.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C2FBDB02774DA52005D7AB9 /* supported_versions.json */; };
 		2C2FBDBA2774E394005D7AB9 /* SFInfoHodler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2FBDB92774E394005D7AB9 /* SFInfoHodler.swift */; };
 		2C2FBDBB2774E394005D7AB9 /* SFInfoHodler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2FBDB92774E394005D7AB9 /* SFInfoHodler.swift */; };
+		2C2FBDBE2774FDD0005D7AB9 /* SalmonUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2C2FBDBD2774FDD0005D7AB9 /* SalmonUI */; };
+		2C2FBDC12774FDEA005D7AB9 /* ShrimpExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 2C2FBDC02774FDEA005D7AB9 /* ShrimpExtensions */; };
+		2C2FBDC42774FDF3005D7AB9 /* SalmonUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2C2FBDC32774FDF3005D7AB9 /* SalmonUI */; };
+		2C2FBDC62774FDF8005D7AB9 /* ShrimpExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 2C2FBDC52774FDF8005D7AB9 /* ShrimpExtensions */; };
 		2CBE6DE72773957A004229DF /* SFSViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE6DD427739570004229DF /* SFSViewer.xcdatamodeld */; };
 		2CBE6DE82773957A004229DF /* SFSViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE6DD427739570004229DF /* SFSViewer.xcdatamodeld */; };
 		2CBE6DE92773957A004229DF /* SFSViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE6DD627739570004229DF /* SFSViewerApp.swift */; };
@@ -48,6 +52,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C2FBDBE2774FDD0005D7AB9 /* SalmonUI in Frameworks */,
+				2C2FBDC12774FDEA005D7AB9 /* ShrimpExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C2FBDC42774FDF3005D7AB9 /* SalmonUI in Frameworks */,
+				2C2FBDC62774FDF8005D7AB9 /* ShrimpExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,9 +85,17 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		2C2FBDC22774FDF3005D7AB9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2CBE6DCE27739570004229DF = {
 			isa = PBXGroup;
 			children = (
+				2C2FBDC22774FDF3005D7AB9 /* Frameworks */,
 				2C2FBDB72774E29A005D7AB9 /* Packages */,
 				2CBE6DDF2773957A004229DF /* Products */,
 				2CBE6DFE27748A04004229DF /* Scripts */,
@@ -203,6 +219,10 @@
 			dependencies = (
 			);
 			name = "SFSViewer (iOS)";
+			packageProductDependencies = (
+				2C2FBDBD2774FDD0005D7AB9 /* SalmonUI */,
+				2C2FBDC02774FDEA005D7AB9 /* ShrimpExtensions */,
+			);
 			productName = "SFSViewer (iOS)";
 			productReference = 2CBE6DDE2773957A004229DF /* SFSViewer.app */;
 			productType = "com.apple.product-type.application";
@@ -221,6 +241,10 @@
 			dependencies = (
 			);
 			name = "SFSViewer (macOS)";
+			packageProductDependencies = (
+				2C2FBDC32774FDF3005D7AB9 /* SalmonUI */,
+				2C2FBDC52774FDF8005D7AB9 /* ShrimpExtensions */,
+			);
 			productName = "SFSViewer (macOS)";
 			productReference = 2CBE6DE42773957A004229DF /* SFSViewer.app */;
 			productType = "com.apple.product-type.application";
@@ -252,6 +276,10 @@
 				Base,
 			);
 			mainGroup = 2CBE6DCE27739570004229DF;
+			packageReferences = (
+				2C2FBDBC2774FDD0005D7AB9 /* XCRemoteSwiftPackageReference "SalmonUI" */,
+				2C2FBDBF2774FDEA005D7AB9 /* XCRemoteSwiftPackageReference "ShrimpExtensions" */,
+			);
 			productRefGroup = 2CBE6DDF2773957A004229DF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -611,6 +639,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2C2FBDBC2774FDD0005D7AB9 /* XCRemoteSwiftPackageReference "SalmonUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kamaal111/SalmonUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		2C2FBDBF2774FDEA005D7AB9 /* XCRemoteSwiftPackageReference "ShrimpExtensions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kamaal111/ShrimpExtensions.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2C2FBDBD2774FDD0005D7AB9 /* SalmonUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C2FBDBC2774FDD0005D7AB9 /* XCRemoteSwiftPackageReference "SalmonUI" */;
+			productName = SalmonUI;
+		};
+		2C2FBDC02774FDEA005D7AB9 /* ShrimpExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C2FBDBF2774FDEA005D7AB9 /* XCRemoteSwiftPackageReference "ShrimpExtensions" */;
+			productName = ShrimpExtensions;
+		};
+		2C2FBDC32774FDF3005D7AB9 /* SalmonUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C2FBDBC2774FDD0005D7AB9 /* XCRemoteSwiftPackageReference "SalmonUI" */;
+			productName = SalmonUI;
+		};
+		2C2FBDC52774FDF8005D7AB9 /* ShrimpExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C2FBDBF2774FDEA005D7AB9 /* XCRemoteSwiftPackageReference "ShrimpExtensions" */;
+			productName = ShrimpExtensions;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		2CBE6DD427739570004229DF /* SFSViewer.xcdatamodeld */ = {

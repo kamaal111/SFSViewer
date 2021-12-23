@@ -6,21 +6,44 @@
 //
 
 import SwiftUI
+import ShrimpExtensions
+import SalmonUI
 
 struct ContentView: View {
+    @StateObject
+    private var sfInfoManager = SFInfoManager()
+
+    private let columns = [
+        GridItem(.adaptive(minimum: 80))
+    ]
+
     var body: some View {
         NavigationView {
-            Text("Select an item")
-                .onAppear(perform: {
-                    do {
-                        let sfInfoHodler = try SFInfoHodler()
-                        print(sfInfoHodler)
-                    } catch {
-                        print(error)
+            Text("Side bar")
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 20) {
+                    ForEach(sfInfoManager.items, id: \.self) { item in
+                        VStack {
+                            Image(systemName: item.name)
+                                .size(.squared(60))
+                            Text(item.name)
+                        }
                     }
-                })
+                }
+                .padding(.all)
+            }
         }
     }
+}
+
+final class SFInfoManager: ObservableObject {
+
+    private let sfInfoHodler = try! SFInfoHodler()
+
+    var items: [SFInfo] {
+        sfInfoHodler.items.suffix(100).asArray()
+    }
+
 }
 
 struct ContentView_Previews: PreviewProvider {
