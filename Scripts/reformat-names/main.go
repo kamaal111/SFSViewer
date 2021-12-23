@@ -2,8 +2,10 @@ package main
 
 import (
 	"bufio"
+	"encoding/json"
 	"encoding/xml"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
 	"strings"
@@ -37,11 +39,38 @@ func main() {
 		log.Fatalln(err)
 	}
 
+	formattedNames := []FormattedName{}
 	symbols := plistDict.GetDict("symbols")
-	fmt.Println(symbols)
+	for symbolIndex, symbol := range symbols.Keys {
+		releaseYear := symbols.Strings[symbolIndex]
+		formattedName := FormattedName{
+			Name:        symbol,
+			ReleaseYear: releaseYear,
+		}
+		formattedNames = append(formattedNames, formattedName)
+	}
+
+	formattedNamesBytes, err := json.MarshalIndent(formattedNames, "", "  ")
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	err = ioutil.WriteFile("../../Shared/Resources/Names/names.json", formattedNamesBytes, 0644)
+	if err != nil {
+		log.Fatalln(err)
+	}
 
 	elapsed := time.Since(start)
 	fmt.Printf("done reformatting names in %s\n", elapsed)
+}
+
+type FormattedName struct {
+	Name        string `json:"name"`
+	ReleaseYear string `json:"release_year"`
+}
+
+type SupportedVersions struct {
+	IOS string `json:"iOS"`
 }
 
 type PlistDict struct {
