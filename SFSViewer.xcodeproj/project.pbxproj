@@ -11,8 +11,8 @@
 		2C2FBDB22774DA52005D7AB9 /* names.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C2FBDAF2774DA52005D7AB9 /* names.json */; };
 		2C2FBDB32774DA52005D7AB9 /* supported_versions.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C2FBDB02774DA52005D7AB9 /* supported_versions.json */; };
 		2C2FBDB42774DA52005D7AB9 /* supported_versions.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C2FBDB02774DA52005D7AB9 /* supported_versions.json */; };
-		2C2FBDBA2774E394005D7AB9 /* SFInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2FBDB92774E394005D7AB9 /* SFInfo.swift */; };
-		2C2FBDBB2774E394005D7AB9 /* SFInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2FBDB92774E394005D7AB9 /* SFInfo.swift */; };
+		2C2FBDBA2774E394005D7AB9 /* SFInfoHodler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2FBDB92774E394005D7AB9 /* SFInfoHodler.swift */; };
+		2C2FBDBB2774E394005D7AB9 /* SFInfoHodler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2FBDB92774E394005D7AB9 /* SFInfoHodler.swift */; };
 		2CBE6DE72773957A004229DF /* SFSViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE6DD427739570004229DF /* SFSViewer.xcdatamodeld */; };
 		2CBE6DE82773957A004229DF /* SFSViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE6DD427739570004229DF /* SFSViewer.xcdatamodeld */; };
 		2CBE6DE92773957A004229DF /* SFSViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE6DD627739570004229DF /* SFSViewerApp.swift */; };
@@ -29,7 +29,7 @@
 		2C2FBDAE27748CE3005D7AB9 /* run.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = run.sh; sourceTree = "<group>"; };
 		2C2FBDAF2774DA52005D7AB9 /* names.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = names.json; sourceTree = "<group>"; };
 		2C2FBDB02774DA52005D7AB9 /* supported_versions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = supported_versions.json; sourceTree = "<group>"; };
-		2C2FBDB92774E394005D7AB9 /* SFInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFInfo.swift; sourceTree = "<group>"; };
+		2C2FBDB92774E394005D7AB9 /* SFInfoHodler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFInfoHodler.swift; sourceTree = "<group>"; };
 		2CBE6DD527739570004229DF /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		2CBE6DD627739570004229DF /* SFSViewerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSViewerApp.swift; sourceTree = "<group>"; };
 		2CBE6DD727739570004229DF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				2CBE6DD827739570004229DF /* Persistence.swift */,
-				2C2FBDB92774E394005D7AB9 /* SFInfo.swift */,
+				2C2FBDB92774E394005D7AB9 /* SFInfoHodler.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -333,7 +333,7 @@
 				2CBE6DED2773957A004229DF /* Persistence.swift in Sources */,
 				2CBE6DE72773957A004229DF /* SFSViewer.xcdatamodeld in Sources */,
 				2CBE6DEB2773957A004229DF /* ContentView.swift in Sources */,
-				2C2FBDBA2774E394005D7AB9 /* SFInfo.swift in Sources */,
+				2C2FBDBA2774E394005D7AB9 /* SFInfoHodler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +345,7 @@
 				2CBE6DEE2773957A004229DF /* Persistence.swift in Sources */,
 				2CBE6DE82773957A004229DF /* SFSViewer.xcdatamodeld in Sources */,
 				2CBE6DEC2773957A004229DF /* ContentView.swift in Sources */,
-				2C2FBDBB2774E394005D7AB9 /* SFInfo.swift in Sources */,
+				2C2FBDBB2774E394005D7AB9 /* SFInfoHodler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

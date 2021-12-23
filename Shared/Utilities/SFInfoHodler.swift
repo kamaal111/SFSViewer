@@ -7,13 +7,17 @@
 
 import Foundation
 
-public struct SFInfo {
-    private let names: [SFName]
-    private let supportedVersions: [String: SFVersions]
+public struct SFInfoHodler {
+    public let items: [SFInfo]
 
     public init() throws {
-        self.supportedVersions = try Self.decodeFile(withName: "supported_versions")
-        self.names = try Self.decodeFile(withName: "names")
+        let supportedVersionsDict: [String: SFVersions] = try Self.decodeFile(withName: "supported_versions")
+        let names: [SFName] = try Self.decodeFile(withName: "names")
+
+        self.items = names.compactMap({
+            guard let supportedVersions = supportedVersionsDict[$0.releaseYear] else { return nil }
+            return SFInfo(name: $0.name, supportedVersions: supportedVersions)
+        })
     }
 
     public enum InitializerErrors: Error {
@@ -44,6 +48,22 @@ public struct SFInfo {
     }
 }
 
+extension SFInfoHodler: CustomStringConvertible {
+    public var description: String {
+        "SFInfoHodler(items: \(items.count) items)"
+    }
+}
+
+public struct SFInfo: Hashable {
+    public let name: String
+    public let supportedVersions: SFVersions
+
+    public init(name: String, supportedVersions: SFVersions) {
+        self.name = name
+        self.supportedVersions = supportedVersions
+    }
+}
+
 struct SFName: Codable, Hashable {
     let name: String
     let releaseYear: String
@@ -59,9 +79,16 @@ struct SFName: Codable, Hashable {
     }
 }
 
-struct SFVersions: Codable, Hashable {
-    let iOS: String
-    let macOS: String
-    let tvOS: String
-    let watchOS: String
+public struct SFVersions: Codable, Hashable {
+    public let iOS: String
+    public let macOS: String
+    public let tvOS: String
+    public let watchOS: String
+
+    public init(iOS: String, macOS: String, tvOS: String, watchOS: String) {
+        self.iOS = iOS
+        self.macOS = macOS
+        self.tvOS = tvOS
+        self.watchOS = watchOS
+    }
 }

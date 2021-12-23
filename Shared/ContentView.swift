@@ -13,8 +13,8 @@ struct ContentView: View {
             Text("Select an item")
                 .onAppear(perform: {
                     do {
-                        let sfInfo = try SFInfo()
-                        print(sfInfo)
+                        let sfInfoHodler = try SFInfoHodler()
+                        print(sfInfoHodler)
                     } catch {
                         print(error)
                     }
