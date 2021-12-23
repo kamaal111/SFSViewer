@@ -44,6 +44,8 @@ func main() {
 }
 
 type PlistDict struct {
-	XMLName xml.Name `xml:"dict"`
-	Keys    []string `xml:"key"`
+	XMLName xml.Name    `xml:"dict"`
+	Keys    []string    `xml:"key"`
+	Dicts   []PlistDict `xml:"dict"`
+	Strings []string    `xml:"string"`
 }
