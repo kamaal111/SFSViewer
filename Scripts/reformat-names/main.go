@@ -37,7 +37,8 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	fmt.Println(plistDict)
+	symbols := plistDict.GetDict("symbols")
+	fmt.Println(symbols)
 
 	elapsed := time.Since(start)
 	fmt.Printf("done reformatting names in %s\n", elapsed)
@@ -48,4 +49,13 @@ type PlistDict struct {
 	Keys    []string    `xml:"key"`
 	Dicts   []PlistDict `xml:"dict"`
 	Strings []string    `xml:"string"`
+}
+
+func (plistDict PlistDict) GetDict(key string) *PlistDict {
+	for dictKeyIndex, dictKey := range plistDict.Keys {
+		if dictKey == key {
+			return &plistDict.Dicts[dictKeyIndex]
+		}
+	}
+	return nil
 }
