@@ -28,6 +28,9 @@
 		2CBE6DDE2773957A004229DF /* SFSViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SFSViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CBE6DE42773957A004229DF /* SFSViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SFSViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CBE6DE62773957A004229DF /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		2CBE6E0127748C7E004229DF /* name_availability.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = name_availability.plist; sourceTree = "<group>"; };
+		2CBE6E0227748C7E004229DF /* name_aliases_strings.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = name_aliases_strings.txt; sourceTree = "<group>"; };
+		2CBE6E0327748C7E004229DF /* main.go */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.go; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				2CBE6DDF2773957A004229DF /* Products */,
+				2CBE6DFE27748A04004229DF /* Scripts */,
 				2CBE6DD327739570004229DF /* Shared */,
 				2CBE6DF9277395C3004229DF /* Targets */,
 			);
@@ -60,11 +64,11 @@
 		2CBE6DD327739570004229DF /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				2CBE6DD627739570004229DF /* SFSViewerApp.swift */,
 				2CBE6DD727739570004229DF /* ContentView.swift */,
 				2CBE6DD827739570004229DF /* Persistence.swift */,
-				2CBE6DD92773957A004229DF /* Assets.xcassets */,
-				2CBE6DD427739570004229DF /* SFSViewer.xcdatamodeld */,
+				2CBE6DD627739570004229DF /* SFSViewerApp.swift */,
+				2CBE6DFC27748976004229DF /* Models */,
+				2CBE6DFA2774895C004229DF /* Resources */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -92,6 +96,64 @@
 				2CBE6DE52773957A004229DF /* macOS */,
 			);
 			path = Targets;
+			sourceTree = "<group>";
+		};
+		2CBE6DFA2774895C004229DF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2CBE6DFF27748A1A004229DF /* Names */,
+				2CBE6DFB27748968004229DF /* Assets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2CBE6DFB27748968004229DF /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				2CBE6DD92773957A004229DF /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		2CBE6DFC27748976004229DF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2CBE6DFD2774897C004229DF /* CoreData */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2CBE6DFD2774897C004229DF /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				2CBE6DD427739570004229DF /* SFSViewer.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		2CBE6DFE27748A04004229DF /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				2CBE6E0027748C7E004229DF /* reformat-names */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
+		2CBE6DFF27748A1A004229DF /* Names */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Names;
+			sourceTree = "<group>";
+		};
+		2CBE6E0027748C7E004229DF /* reformat-names */ = {
+			isa = PBXGroup;
+			children = (
+				2CBE6E0127748C7E004229DF /* name_availability.plist */,
+				2CBE6E0227748C7E004229DF /* name_aliases_strings.txt */,
+				2CBE6E0327748C7E004229DF /* main.go */,
+			);
+			path = "reformat-names";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
